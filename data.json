@@ -238,19 +238,5 @@
     "price": 69.99,
     "stock": 70,
     "image_url": "https://example.com/images/backpack.jpg"
-  },
-  {
-    "description": "test new",
-    "price": 100,
-    "stock": 100,
-    "image_url": "https://test-new",
-    "id": 31,
-    "name": "test new"
-  },
-  {
-    "description": "test",
-    "price": 100,
-    "stock": 100,
-    "id": 32
   }
 ]
