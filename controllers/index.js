@@ -2,25 +2,25 @@ const express = require('express')
 const router = express.Router()
 const { Product } = require('../models')
 
-// router.get('/', (req, res) => {
-//     Product.find()
-//     .then(products => {
-//         res.json(products)
-//     })
-//     .catch(err => {
-//         res.json(err)
-//     })
-// })
+router.get('/', (req, res) => {
+    Product.find()
+    .then(products => {
+        res.json(products)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
-// router.get('/:id', (req, res) => {
-//     Product.findById(req.params.id)
-//     .then(product => {
-//         res.json(product)
-//     })
-//     .catch(err => {
-//         res.json(err)
-//     })
-// })
+router.get('/:id', (req, res) => {
+    Product.findById(req.params.id)
+    .then(product => {
+        res.json(product)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
 router.post('/', (req, res) => {
     let { name, description, price, stock, image_url } = req.body
@@ -41,34 +41,34 @@ router.post('/', (req, res) => {
     })
 })
 
-// router.put('/:id', (req, res) => { 
-//     let { name, description, price, stock, image_url } = req.body
+router.put('/:id', (req, res) => { 
+    let { name, description, price, stock, image_url } = req.body
 
-//     price = Number(price)
-//     stock = Number(stock)
+    price = Number(price)
+    stock = Number(stock)
 
-//     if (!name || !description || !price || !stock) {
-//         new Error('All fields are required')
-//     }
+    if (!name || !description || !price || !stock) {
+        new Error('All fields are required')
+    }
 
-//     Product.update(req.params.id, {name, description, price, stock, image_url})
-//     .then(product => {
-//         res.json(product)
-//     })
-//     .catch(err => {
-//         res.json(err)
-//     })
-// })
+    Product.update(req.params.id, {name, description, price, stock, image_url})
+    .then(product => {
+        res.json(product)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
-// router.delete('/:id', (req, res) => {
-//     Product.delete(req.params.id)
-//     .then(() => {
-//         res.json({ message: `Product with id ${req.params.id} has been deleted`})
-//         })
-//     .catch(err => {
-//         res.json(err)
-//     })
-// })
+router.delete('/:id', (req, res) => {
+    Product.delete(req.params.id)
+    .then(() => {
+        res.json({ message: `Product with id ${req.params.id} has been deleted`})
+        })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
 
 module.exports = router;
