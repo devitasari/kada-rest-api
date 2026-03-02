@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const errorHandler = (err, req, res, next) => {
     let message = err
     let status = 500
-    
+
     if (err instanceof mongoose.Error.ValidationError) {
         let tempErr = []
         for (let key in err.errors) {
