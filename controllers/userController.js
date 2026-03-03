@@ -39,6 +39,13 @@ const UserController = {
         .catch(err => {
             next(err)
         })
+    },
+    loginGoogle: (req, res, next) => {
+        const userObject = req.user.toObject()
+        const token = generateToken(userObject)
+        delete userObject.password
+
+        res.json({ ...userObject, token})
     }
 }
 

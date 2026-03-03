@@ -8,9 +8,7 @@ const generateToken = (payload) => {
 
 const decodedToken = (payload) => {
     const decoded = jwt.verify(payload, secret)
-    console.log(decoded)
     return decoded
 }
-
 
 module.exports = { generateToken, decodedToken }
