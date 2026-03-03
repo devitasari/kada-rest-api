@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
   price: Number,
   stock: Number,
   image_url: String,
+  userId: String
 }, { timestamps: true       
 });
 
