@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const passport = require('./helpers/passport')
 const express = require('express')
 const mongo = require('./config/connection')
 const app = express()
