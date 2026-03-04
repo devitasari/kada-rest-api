@@ -35,12 +35,12 @@ const UserController = {
 
         User.create({ email, password})
         .then(user => {
-            const channel = getChannel();
+            // const channel = getChannel();
 
-            channel.sendToQueue(
-                'send-email',
-                Buffer.from(JSON.stringify({ email: user.email}))
-            )
+            // channel.sendToQueue(
+            //     'send-email',
+            //     Buffer.from(JSON.stringify({ email: user.email}))
+            // )
 
             res.json({ id: user._id, email: user.email })
         })
