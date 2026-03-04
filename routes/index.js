@@ -2,7 +2,22 @@ const express = require('express')
 const router = express.Router()
 const { UserController, ProductController } = require('../controllers')
 const { authentication, authorization } = require('../middlewares/auth')
-const passport = require('passport')
+const passport = require('../helpers/passport')
+const { sendEmail } = require('../helpers/mailer')
+
+router.get('/test-email', async (req, res, next) => {
+  try {
+    await sendEmail({
+      to: '', //fill with email address
+      subject: 'Test Email 🚀',
+      html: '<h1>Hello from Nodemailer</h1>'
+    })
+
+    res.json({ message: 'Email sent successfully' })
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post('/login', UserController.login)
 

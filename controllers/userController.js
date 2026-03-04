@@ -1,6 +1,7 @@
 const { User } = require('../models')
 const { hash, compare } = require('../helpers/password')
 const { generateToken } = require('../helpers/token')
+const { getChannel } = require('../helpers/rabbitmq')
 
 const UserController = {
     login: (req, res, next) => {
@@ -34,18 +35,26 @@ const UserController = {
 
         User.create({ email, password})
         .then(user => {
-            res.json(user)
+            const channel = getChannel();
+
+            channel.sendToQueue(
+                'send-email',
+                Buffer.from(JSON.stringify({ email: user.email}))
+            )
+
+            res.json({ id: user._id, email: user.email })
         })
         .catch(err => {
             next(err)
         })
     },
     loginGoogle: (req, res, next) => {
-        const userObject = req.user.toObject()
-        const token = generateToken(userObject)
-        delete userObject.password
+        const token = generateToken({
+            id: req.user._id,
+            email: req.user.email
+        })
 
-        res.json({ ...userObject, token})
+        res.json({ id: req.user._id, email: req.user.email, token })
     }
 }
 
