@@ -12,7 +12,7 @@ const { connectRabbitMQ } = require('./helpers/rabbitmq')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// connectRabbitMQ()
+connectRabbitMQ()
 
 app.use(passport.initialize())
 
