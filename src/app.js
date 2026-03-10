@@ -2,9 +2,9 @@ require('dotenv').config()
 
 const passport = require('./helpers/passport')
 const express = require('express')
-const mongo = require('./config/connection')
+const { connectDB } = require('./config/connection')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const routes = require('./routes')
 const errorHandler = require('./middlewares/errorHandler')
 const { connectRabbitMQ } = require('./helpers/rabbitmq')
@@ -13,6 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 connectRabbitMQ()
+connectDB()
 
 app.use(passport.initialize())
 

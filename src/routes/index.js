@@ -8,7 +8,7 @@ const { sendEmail } = require('../helpers/mailer')
 router.get('/test-email', async (req, res, next) => {
   try {
     await sendEmail({
-      to: '', //fill with email address
+      to: 'devitas700@gmail.com', //fill with email address
       subject: 'Test Email 🚀',
       html: '<h1>Hello from Nodemailer</h1>'
     })
@@ -32,7 +32,7 @@ router.get('/google',
   })
 )
 
-router.use(authentication)
+// router.use(authentication)
 
 router.get('/products', ProductController.find)
 

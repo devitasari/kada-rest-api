@@ -4,7 +4,7 @@ const amqp = require('amqplib');
 const { sendEmail } = require('../helpers/mailer')
 
 async function startWorker() {
-  const connection = await amqp.connect('amqp://localhost');
+  const connection = await amqp.connect('amqp://rabbitmq');
   const channel = await connection.createChannel();
 
   await channel.assertQueue('send-email');
