@@ -17,7 +17,11 @@ pipeline {
     stage('Inject ENV') {
       steps {
         withCredentials([file(credentialsId: 'env-file', variable: 'ENVFILE')]) {
-          sh 'cp "$ENVFILE" .env'
+          sh '''
+          rm -f .env
+          cp "$ENVFILE" .env
+          chmod 600 .env
+          '''
         }
       }
     }
