@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  }
+
   stages {
 
     stage('Clone Repo') {
@@ -13,9 +17,7 @@ pipeline {
     stage('Inject ENV') {
       steps {
         withCredentials([file(credentialsId: 'env-file', variable: 'ENVFILE')]) {
-          sh '''
-          cp "$ENVFILE" .env
-          '''
+          sh 'cp "$ENVFILE" .env'
         }
       }
     }
